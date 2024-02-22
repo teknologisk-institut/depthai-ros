@@ -82,12 +82,16 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC IS_ROS2)
 message(STATUS "--------------------------$ENV{ROS_DISTRO} ---")
 message(STATUS $ENV{ROS_DISTRO})
 
-if($ENV{ROS_DISTRO} STREQUAL "galactic" OR ($ENV{ROS_DISTRO} STREQUAL "rolling" AND "${ubuntu_version}" STREQUAL "20.04\n"))
+if($ENV{ROS_DISTRO} STREQUAL "galactic" OR ($ENV{ROS_DISTRO} STREQUAL "rolling"))
   target_compile_definitions(${PROJECT_NAME} PRIVATE IS_GALACTIC)
 endif()
 
 if($ENV{ROS_DISTRO} STREQUAL "humble")
   target_compile_definitions(${PROJECT_NAME} PRIVATE IS_HUMBLE)
+endif()
+
+if(($ENV{ROS_DISTRO} STREQUAL "rolling"))
+  target_compile_definitions(${PROJECT_NAME} PRIVATE IS_ROLLING)
 endif()
 
 target_link_libraries(${PROJECT_NAME}

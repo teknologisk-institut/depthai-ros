@@ -65,7 +65,7 @@ void SpatialDetectionConverter::toRosMsg(std::shared_ptr<dai::SpatialImgDetectio
         opDetectionMsg.detections[i].results[0].id = std::to_string(inNetData->detections[i].label);
         opDetectionMsg.detections[i].results[0].score = inNetData->detections[i].confidence;
 #endif
-#ifdef IS_HUMBLE
+#if defined(IS_HUMBLE) || defined(IS_ROLLING)
         opDetectionMsg.detections[i].bbox.center.position.x = xCenter;
         opDetectionMsg.detections[i].bbox.center.position.y = yCenter;
 #else

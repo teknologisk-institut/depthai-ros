@@ -41,6 +41,7 @@ find_package(tf2_ros REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(composition_interfaces REQUIRED)
+find_package(ament_index_cpp)
 
 set(dependencies
   camera_info_manager
@@ -56,6 +57,7 @@ set(dependencies
   tf2_geometry_msgs
   tf2
   composition_interfaces
+  ament_index_cpp
 )
 
 include_directories(
@@ -82,7 +84,7 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC IS_ROS2)
 message(STATUS "--------------------------$ENV{ROS_DISTRO} ---")
 message(STATUS $ENV{ROS_DISTRO})
 
-if($ENV{ROS_DISTRO} STREQUAL "galactic" OR ($ENV{ROS_DISTRO} STREQUAL "rolling"))
+if($ENV{ROS_DISTRO} STREQUAL "galactic")
   target_compile_definitions(${PROJECT_NAME} PRIVATE IS_GALACTIC)
 endif()
 
